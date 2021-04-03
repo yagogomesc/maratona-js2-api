@@ -47,4 +47,14 @@ module.exports = {
     if (orderBy) query.sort({ [orderBy]: sortBy });
     return query.exec();
   },
+  store: (data) => {
+    const game = new Game(data);
+    return game.save();
+  },
+  update: (id, data, options = { new: true }) => {
+    return Game.findOneAndUpdate({ _id: id }, data, options);
+  },
+  destroy: (id) => {
+    return Game.deleteOne({ _id: id });
+  },
 };
